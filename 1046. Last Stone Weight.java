@@ -21,3 +21,20 @@ class Solution {
     return stones[0];
     }
 }
+
+
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> heap=new PriorityQueue<>(Collections.reverseOrder());
+        for(int stone:stones)
+        heap.add(stone);
+
+        while(heap.size()>1){
+            int m=heap.poll();
+            int n=heap.poll();
+            if(m!=n)
+            heap.add(m-n);
+        }
+        return heap.isEmpty()?0:heap.peek();
+    }
+}
